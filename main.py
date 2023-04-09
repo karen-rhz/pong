@@ -10,6 +10,7 @@ screen.title("Pong")
 screen.tracer(0)
 game_over = False
 
+
 for _ in range(15):
     middle_lane = Turtle("square")
     middle_lane.penup()
