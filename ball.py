@@ -10,6 +10,7 @@ class Ball(Turtle):
         self.color("white")
         self.x_paces = 10
         self.y_paces = 10
+        self.ball_speed = 0
 
     def movement(self):
         new_x = self.xcor() + self.x_paces
@@ -23,6 +24,10 @@ class Ball(Turtle):
         self.x_paces *= -1
 
     def ball_in_middle(self):
+        # Increase the ball speed everytime someone scores
+        if self.ball_speed <= 10:
+            self.ball_speed += 1
+            self.speed(self.ball_speed)
         self.goto(0, 0)
         # Make the ball go the other way.
         self.bounce_x()

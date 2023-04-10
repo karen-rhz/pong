@@ -2,23 +2,14 @@ from turtle import Turtle, Screen
 from paddle import Paddle
 from ball import Ball
 import time
+from scoreboard import Score
 
 screen = Screen()
-screen.screensize(canvheight=300, canvwidth=800, bg="black")
-screen.setup(height=300, width=800)
+screen.screensize(canvheight=600, canvwidth=800, bg="black")
+screen.setup(height=600, width=800)
 screen.title("Pong")
 screen.tracer(0)
 game_over = False
-
-
-for _ in range(15):
-    middle_lane = Turtle("square")
-    middle_lane.penup()
-    middle_lane.color("white")
-    middle_lane.shapesize(0.25, 1)
-    middle_lane.seth(270)
-    y_cor_lane = (_*50) - 300
-    middle_lane.goto(0, y_cor_lane)
 
 player1_paddle = Paddle(-300, 0)
 
@@ -32,6 +23,8 @@ screen.onkey(player2_paddle.move_up, "Up")
 screen.onkey(player2_paddle.move_down, "Down")
 
 ball = Ball()
+score = Score()
+score.update()
 while not game_over:
     time.sleep(0.1)
     screen.update()
@@ -49,10 +42,12 @@ while not game_over:
     # When the player misses to hit the ball
     # If player 1 misses the ball, the point will be given to player 2
     if ball.xcor() < -320:
+        score.player2_scores()
         ball.ball_in_middle()
 
     # If player 2 misses the ball, the point will be given to player 1
     if ball.xcor() > 320:
+        score.player1_scores()
         ball.ball_in_middle()
 
 screen.exitonclick()
