@@ -21,3 +21,8 @@ class Ball(Turtle):
 
     def bounce_x(self):
         self.x_paces *= -1
+
+    def ball_in_middle(self):
+        self.goto(0, 0)
+        # Make the ball go the other way.
+        self.bounce_x()
